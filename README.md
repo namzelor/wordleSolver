@@ -7,4 +7,4 @@ yes.
 is the code bad?
 yes.
 do i care?
-...
+No.
