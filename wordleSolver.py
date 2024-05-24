@@ -38,6 +38,7 @@ with open(Path.cwd() / 'fiveWordList.txt', 'r') as wordList:
   fiveWordList.append(reader)
 fiveWordList = fiveWordList[0]
 randomWord = rand.choice(fiveWordList)
+
 open(Path.cwd() / 'something.txt', 'w').close()
 something = open(Path.cwd() / 'something.txt', 'a')
 
@@ -63,6 +64,8 @@ while '' in letterCheckerDict['correct'] and tries != 6:
   #correct data structures
   for value in gameKeys:
     if value.get_attribute('data-state') == 'correct':
+      if value.text.lower() in letterCheckerDict['absent']:
+        letterCheckerDict['absent'].remove(value.text.lower())
       letterCheckerDict['correct'][indexOfGameKey] = value.text.lower()
     if value.get_attribute('data-state') == 'present':
       letterCheckerDict['present'].update(value.text.lower())
@@ -116,9 +119,8 @@ while '' in letterCheckerDict['correct'] and tries != 6:
   randomWord = rand.choice(newfiveWordList)
   tries += 1
 
-
 wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "svg[data-testid='icon-close']"))).click()           
 wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "svg[data-testid='icon-close']"))).click() 
 
-#if u want to close at the end or not
+#if u want to close at the end or not.
 #driver.close()
