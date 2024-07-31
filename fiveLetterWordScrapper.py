@@ -23,7 +23,7 @@ def fiveLetterWordScrapper():
         
     soup = BeautifulSoup(page.content, 'html.parser')
     findWords = soup.find('ul', class_ = 'clearfix')
-    arrWordList = [x.text.strip()[0:5] for x in findWords if any(x.text.strip())]
+    arrWordList = {x.text.strip()[0:5] for x in findWords if any(x.text.strip())}
     with open(Path.cwd()/ 'fiveWordList.txt', 'a') as wordList:
       for word in arrWordList:
         wordList.write(word.lower() + '\n')
